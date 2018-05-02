@@ -8,7 +8,7 @@ package hashingClasses;
  * @param <K>
  * @param <V>
  */
-public class MyCuckooHashing<K, V> {
+public class MyCuckooHashing<K, V> extends MyHashing<K, V> {
 
 	private double factor = 0.1;
 	private int hashMod = 31;

@@ -8,7 +8,7 @@ package hashingClasses;
  * @param <K> key
  * @param <V> value
  */
-public class MyLinearHashing<K, V> {
+public class MyLinearHashing<K, V> extends MyHashing<K, V> {
 	private int k = 5;
 	private double factor = 0.1;
 
