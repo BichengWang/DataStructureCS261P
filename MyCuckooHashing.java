@@ -34,6 +34,13 @@ public class MyCuckooHashing<K, V> extends MyHashing<K, V> {
 		this.factor = factor;
 		this.k = k;
 	}
+	public MyCuckooHashing(double factor, int k, int times){
+		this.elements1 = new MyHashPair[capacity1];
+		this.elements2 = new MyHashPair[capacity2];
+		this.factor = factor;
+		this.k = k;
+		this.times = times;
+	}
 	
 	public int hashCode1(K key) {
 		return (key.hashCode() % capacity1 + capacity1) % capacity1;

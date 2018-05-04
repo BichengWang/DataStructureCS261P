@@ -7,7 +7,7 @@ import java.util.Random;
 public class TestHashing {
 
 	// total insert elements
-	static int N = 50000;
+	static int N = 10000;
 	
 	// increasing factor
 	static double factor = 0.75;
@@ -21,7 +21,7 @@ public class TestHashing {
 	public static void main(String[] args) {
 		init();
 		long[][] res = new long[10][4];
-		
+		// different load factor
 		N = 50000;
 		k = 5;
 		factor = 0.75;
@@ -33,7 +33,7 @@ public class TestHashing {
 			res[i][3] = testMyHashing(new MyDoubleHashing<>(factor, k));
 			System.out.println("factor: 0." + i + "\t" + res[i][0] + "\t" + res[i][1] + "\t" + res[i][2] + "\t" + res[i][3]);
 		}
-		
+		// different re-allocate times
 		N = 50000;
 		k = 5;
 		factor = 0.75;
@@ -44,6 +44,12 @@ public class TestHashing {
 			res[i][2] = testMyHashing(new MyCuckooHashing<>(factor, k));
 			res[i][3] = testMyHashing(new MyDoubleHashing<>(factor, k));
 			System.out.println("k: " + k + "\t" + res[i][0] + "\t" + res[i][1] + "\t" + res[i][2] + "\t" + res[i][3]);
+		}
+		// Cuckoo Hashing loop time
+		for (int i = 0; i < 10; i++) {
+			int times = i + 1;
+			res[i][2] = testMyHashing(new MyCuckooHashing<>(factor, k, times));
+			System.out.println("times: " + times + "\t\t" + res[i][2]);
 		}
 	}
 	
@@ -57,7 +63,7 @@ public class TestHashing {
 
 	private static long testMyHashing(MyHashing<Double, Integer> mh) {
 		long res = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 100; i++) {
 			long start = System.currentTimeMillis();
 			for (Map.Entry<Double, Integer> en : map.entrySet()) {
 				mh.put(en.getKey(), en.getValue());
